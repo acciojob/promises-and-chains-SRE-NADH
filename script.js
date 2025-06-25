@@ -1,17 +1,5 @@
-let handlePromise = (age) => {
-	return new Promise((resolve, reject) => {
-		if (Number(age) >= 18) {
-			setTimeout(() => {
-				
-				resolve("You can vote.");
-			}, 4000);
-		} else {
-			setTimeout(() => {
-				reject("You aren't old enough.");
-			}, 4000);
-		}
-	});
-};
+
+
 
 let handleSubmit = () => {
 	const age = document.getElementById('age').value;
@@ -22,8 +10,21 @@ let handleSubmit = () => {
 		return;
 	}
 
-	handlePromise(age)
-		.then((message) => {
+	
+	let promise =  new Promise((resolve, reject) => {
+		if (Number(age) >= 18) {
+			setTimeout(() => {
+				
+				resolve(`Welcome, ${name}. You can vote.`);
+			}, 4000);
+		} else {
+			setTimeout(() => {
+				reject(`Oh sorry ${name}. You aren't old enough.`);
+			}, 4000);
+		}
+	});
+	
+		promise.then((message) => {
 			window.alert(message);
 		})
 		.catch((errorMessage) => {
